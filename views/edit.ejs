@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Blog - Blogily</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2><i class="fas fa-blog"></i> Blogily</h2>
+            </div>
+            <div class="nav-menu">
+                <a href="/" class="nav-link">Home</a>
+                <a href="/create" class="nav-link">Create Blog</a>
+                <span class="nav-user">Welcome, <%= user.username %>!</span>
+                <form action="/logout" method="POST" class="logout-form">
+                    <button type="submit" class="logout-btn">Logout</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Edit Blog Form -->
+    <main class="create-main">
+        <div class="container">
+            <div class="create-card">
+                <div class="create-header">
+                    <h2><i class="fas fa-edit"></i> Edit Blog</h2>
+                    <p>Update your blog post</p>
+                </div>
+
+                <form action="/edit/<%= blog._id %>" method="POST" class="create-form">
+                    <input type="hidden" name="_method" value="PUT">
+                    
+                    <div class="form-group">
+                        <label for="title">
+                            <i class="fas fa-heading"></i> Blog Title
+                        </label>
+                        <input type="text" id="title" name="title" value="<%= blog.title %>" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="content">
+                            <i class="fas fa-edit"></i> Blog Content
+                        </label>
+                        <textarea id="content" name="content" rows="15" required><%= blog.content %></textarea>
+                    </div>
+
+                    <div class="form-actions">
+                        <a href="/" class="btn btn-cancel">
+                            <i class="fas fa-times"></i> Cancel
+                        </a>
+                        <button type="submit" class="btn btn-create">
+                            <i class="fas fa-save"></i> Update Blog
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
