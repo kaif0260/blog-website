@@ -12,6 +12,10 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({ extended: true }));
+
+// Set Google Analytics ID globally for all templates
+app.locals.GA_TRACKING_ID = 'G-L724350MBS';
+
 app.use(methodOverride('_method'));
 app.use(methodOverride(function (req, res) {
     if (req.body && typeof req.body === 'object' && '_method' in req.body) {
